@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NIMS Tatkal Seva | 24×7 Care, Just a Tap Away</title>
+  <meta name="description"
+    content="NIMS Tatkal Seva — ICU Bed Booking, OPD, Online Appointments, Ambulance Booking and Health Checkups.">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
+  <link rel="icon" type="image/png" href="logo-nims-tatkal-seva-Photoroom.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --red: #b40000;
+      --red2: #e00000;
+      --dark: #090909;
+      --gold: #d7ad55;
+      --white: #fff;
+      --muted: #d9d9d9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 50% 10%, rgba(224, 0, 0, .28), transparent 34%),
+        linear-gradient(180deg, #140000 0%, #080808 65%, #050505 100%);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 28px 18px 24px;
+    }
+
+    .hero {
+      width: min(1050px, 100%);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* 1st Requirement: Outer Red Outline with 2 Slow Tapered Comet Pointers */
+    .logo-orbit-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: min(285px, 78vw);
+      aspect-ratio: 1 / 1;
+      margin: 10px auto 18px;
+    }
+
+    /* SVG containing red outline circle and 2 tapered comets (front round, tail thin) */
+    .orbit-svg-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* 2 Pointers Orbiting slowly (11s smooth loop) */
+    .orbit-comets-group {
+      transform-origin: 150px 150px;
+      animation: orbitSpinSlow 11s linear infinite;
+      will-change: transform;
+    }
+
+    @keyframes orbitSpinSlow {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* White circular logo badge */
+    .logo-wrap {
+      width: min(235px, 64vw);
+      aspect-ratio: 1 / 1;
+      background: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, .65), 0 0 30px rgba(255, 255, 255, .2);
+      border: 3px solid rgba(255, 255, 255, .95);
+      position: relative;
+      z-index: 2;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .logo-wrap:hover {
+      transform: scale(1.02);
+      box-shadow: 0 16px 42px rgba(0, 0, 0, .75), 0 0 45px rgba(255, 255, 255, .3);
+    }
+
+    .official-logo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    h1 {
+      font-size: clamp(30px, 6vw, 56px);
+      line-height: 1.1;
+      font-weight: 900;
+      letter-spacing: -1.2px;
+    }
+
+    .tagline {
+      color: #f1d18b;
+      font-size: clamp(14px, 2vw, 19px);
+      margin: 10px 0 20px;
+      letter-spacing: .4px;
+    }
+
+    .download {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin: 16px 0 14px;
+    }
+
+    .app-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 190px;
+      height: 54px;
+      background: #000000;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, .28);
+      border-radius: 10px;
+      padding: 0 14px;
+      text-decoration: none;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, .45);
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease;
+      box-sizing: border-box;
+    }
+
+    .app-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(215, 173, 85, .85);
+      box-shadow: 0 9px 24px rgba(215, 173, 85, .25);
+      background: #0d0d0d;
+    }
+
+    .app-btn-icon {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .app-btn-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      line-height: 1.15;
+    }
+
+    .app-btn-sub {
+      font-size: 9.5px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: #bbb;
+      font-weight: 500;
+    }
+
+    .app-btn-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -.2px;
+    }
+
+    /* 2nd Requirement: Real Live Running Heart Rate (Continuous Canvas, NO image sliding) */
+    .ecg-container-wrap {
+      width: min(1050px, 100%);
+      margin: 6px auto 0;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .ecg-canvas-wrapper {
+      width: 100%;
+      height: 58px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      /* Left & right edges fade and blur into background; Center is 100% visible */
+      mask-image: linear-gradient(to right,
+          transparent 0%,
+          rgba(0, 0, 0, 0.12) 4%,
+          rgba(0, 0, 0, 0.65) 13%,
+          black 24%,
+          black 76%,
+          rgba(0, 0, 0, 0.65) 87%,
+          rgba(0, 0, 0, 0.12) 96%,
+          transparent 100%);
+      -webkit-mask-image: linear-gradient(to right,
+          transparent 0%,
+          rgba(0, 0, 0, 0.12) 4%,
+          rgba(0, 0, 0, 0.65) 13%,
+          black 24%,
+          black 76%,
+          rgba(0, 0, 0, 0.65) 87%,
+          rgba(0, 0, 0, 0.12) 96%,
+          transparent 100%);
+    }
+
+    /* Soft edge blur overlays to merge smoothly with background */
+    .ecg-canvas-wrapper::before,
+    .ecg-canvas-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 14%;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .ecg-canvas-wrapper::before {
+      left: 0;
+      background: linear-gradient(to right, #080808 10%, rgba(8, 8, 8, 0.6) 50%, transparent 100%);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .ecg-canvas-wrapper::after {
+      right: 0;
+      background: linear-gradient(to left, #080808 10%, rgba(8, 8, 8, 0.6) 50%, transparent 100%);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    #ecgCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Divider line directly under the heartrate */
+    .ecg-bottom-line {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg,
+          transparent 0%,
+          rgba(215, 173, 85, .3) 12%,
+          rgba(255, 30, 30, .6) 35%,
+          rgba(215, 173, 85, .75) 50%,
+          rgba(255, 30, 30, .6) 65%,
+          rgba(215, 173, 85, .3) 88%,
+          transparent 100%);
+      margin-top: 2px;
+    }
+
+    .section {
+      width: min(1050px, 100%);
+      padding-top: 22px;
+    }
+
+    .section-title {
+      text-align: center;
+      color: #fff;
+      font-size: 20px;
+      margin-bottom: 14px;
+      font-weight: 800;
+    }
+
+    .booking-line-wrap {
+      width: 100%;
+      text-align: center;
+      margin: 0 auto 22px;
+    }
+
+    .booking-line {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(215, 173, 85, .35);
+      border-radius: 999px;
+      padding: 10px 24px;
+      font-size: 15px;
+      color: #f0f0f0;
+      line-height: 1.5;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .35);
+    }
+
+    .booking-line a {
+      color: #f7d38a;
+      font-weight: 800;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      transition: color .2s ease;
+    }
+
+    .booking-line a:hover {
+      color: #ffffff;
+    }
+
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .service {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(145deg, #b80000, #7c0000);
+      border: 1px solid rgba(215, 173, 85, .55);
+      border-radius: 9px;
+      padding: 9px 15px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #ffffff;
+      white-space: nowrap;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .35);
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+    }
+
+    .service:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(145deg, #dc0000, #960000);
+      border-color: rgba(246, 210, 136, .95);
+      box-shadow: 0 8px 20px rgba(220, 0, 0, .45);
+    }
+
+    .service .service-icon {
+      font-size: 18px;
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
+    }
+
+    .service .service-name {
+      display: inline-block;
+      line-height: 1;
+    }
+
+    .about {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      width: min(1050px, 100%);
+    }
+
+    .info {
+      background: rgba(255, 255, 255, .045);
+      border: 1px solid rgba(215, 173, 85, .25);
+      border-radius: 14px;
+      padding: 18px;
+      text-align: left;
+    }
+
+    .info h3 {
+      color: #f0ca76;
+      margin-bottom: 7px;
+      font-size: 17px;
+    }
+
+    .info p {
+      color: #ddd;
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .emergency {
+      margin-top: 25px;
+      width: min(1050px, 100%);
+      background: linear-gradient(90deg, #8c0000, #d10000, #8c0000);
+      border: 1px solid var(--gold);
+      border-radius: 15px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .emergency h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .numbers {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .number {
+      background: #fff;
+      color: #111;
+      border-radius: 10px;
+      padding: 11px 18px;
+      font-weight: 900;
+      transition: transform .2s;
+    }
+
+    .number:hover {
+      transform: translateY(-2px);
+    }
+
+    .number small {
+      display: block;
+      color: #777;
+      font-weight: 600;
+      font-size: 10px;
+      margin-bottom: 2px;
+    }
+
+    .footer {
+      margin-top: 26px;
+      text-align: center;
+      color: #aaa;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .footer b {
+      color: #ddd;
+    }
+
+    /* NIMS Hospital Affiliation Showcase below Services */
+    .hospital-affiliation {
+      margin: 28px auto 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+    }
+
+    .affiliation-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 4px 14px;
+      border-radius: 999px;
+      background: rgba(215, 173, 85, 0.12);
+      border: 1px solid rgba(215, 173, 85, 0.35);
+      color: #f1d18b;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 11px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .affiliation-badge-dot {
+      width: 6px;
+      height: 6px;
+      background: #e00000;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #ff2222;
+      animation: pulseCore 1.5s ease-in-out infinite alternate;
+    }
+
+    .hospital-logo-card {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 11px 24px;
+      box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.55),
+        0 0 25px rgba(255, 255, 255, 0.14);
+      border: 2px solid rgba(215, 173, 85, 0.45);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      text-decoration: none;
+    }
+
+    .hospital-logo-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(215, 173, 85, 0.95);
+      box-shadow:
+        0 14px 34px rgba(0, 0, 0, 0.7),
+        0 0 30px rgba(215, 173, 85, 0.3);
+    }
+
+    .hospital-badge-img {
+      height: 56px;
+      width: auto;
+      max-width: min(290px, 82vw);
+      object-fit: contain;
+      display: block;
+    }
+
+    .affiliation-tagline {
+      margin-top: 10px;
+      color: #e5e5e5;
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .affiliation-tagline span {
+      color: #f7d38a;
+    }
+
+    @media(max-width:720px) {
+      .page {
+        padding-top: 18px;
+      }
+
+      .logo-orbit-container {
+        width: min(250px, 76vw);
+      }
+
+      .logo-wrap {
+        width: min(205px, 62vw);
+        padding: 12px;
+      }
+
+      .ecg-canvas-wrapper {
+        height: 48px;
+      }
+
+      .app-btn {
+        width: 168px;
+        height: 48px;
+        padding: 0 10px;
+        gap: 8px;
+      }
+
+      .app-btn-sub {
+        font-size: 8.5px;
+      }
+
+      .app-btn-title {
+        font-size: 14px;
+      }
+
+      .services {
+        gap: 8px;
+      }
+
+      .service {
+        padding: 8px 12px;
+        font-size: 12.5px;
+      }
+
+      .service .service-icon {
+        font-size: 16px;
+      }
+
+      .booking-line {
+        padding: 8px 16px;
+        font-size: 13.5px;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      .hospital-affiliation {
+        margin: 22px auto 6px;
+      }
+
+      .hospital-logo-card {
+        padding: 9px 18px;
+        border-radius: 12px;
+      }
+
+      .hospital-badge-img {
+        height: 48px;
+      }
+
+      .affiliation-tagline {
+        font-size: 12.5px;
+      }
+    }
+
+    @media(max-width:390px) {
+      .download {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .app-btn {
+        width: min(220px, 100%);
+      }
+
+      .service {
+        padding: 7px 10px;
+        font-size: 11.5px;
+      }
+
+      .hospital-badge-img {
+        height: 42px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <section class="hero">
+      <!-- 1st: Logo with Red Outline and 2 Slow Tapered Orbiting Pointers (Round front, thin tail) -->
+      <div class="logo-orbit-container">
+        <svg class="orbit-svg-layer" viewBox="0 0 300 300" aria-hidden="true">
+          <defs>
+            <!-- Gradient for Comet 1 (Head at top 150,12 moving clockwise, tail sweeps back left) -->
+            <linearGradient id="cometGrad1" x1="150" y1="12" x2="35" y2="45" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#ffffff" />
+              <stop offset="15%" stop-color="#ff3333" />
+              <stop offset="65%" stop-color="#dd0000" stop-opacity="0.65" />
+              <stop offset="100%" stop-color="#880000" stop-opacity="0" />
+            </linearGradient>
+
+            <!-- Gradient for Comet 2 (Head at bottom 150,288 moving clockwise, tail sweeps back right) -->
+            <linearGradient id="cometGrad2" x1="150" y1="288" x2="265" y2="255" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#ffffff" />
+              <stop offset="15%" stop-color="#ff3333" />
+              <stop offset="65%" stop-color="#dd0000" stop-opacity="0.65" />
+              <stop offset="100%" stop-color="#880000" stop-opacity="0" />
+            </linearGradient>
+
+            <!-- Luminous Comet Glow -->
+            <filter id="cometGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
+          <!-- Red circular outline track -->
+          <circle cx="150" cy="150" r="138" fill="none" stroke="#ff1a1a" stroke-width="2.2" opacity="0.85"
+            style="filter: drop-shadow(0 0 8px rgba(255, 26, 26, 0.7));" />
+
+          <!-- Outer subtle dashed radar ring -->
+          <circle cx="150" cy="150" r="144" fill="none" stroke="rgba(255, 30, 30, 0.3)" stroke-width="1"
+            stroke-dasharray="4 6" />
+
+          <!-- Orbiting group containing the 2 tapered comets (180deg apart, slow 11s spin) -->
+          <g class="orbit-comets-group">
+            <!-- Pointer 1: Tapered Tail (aage se round, picche se thin) -->
+            <path
+              d="M 150.00 7.25 L 146.58 7.44 L 143.17 7.71 L 139.76 8.06 L 136.37 8.50 L 132.99 9.02 L 129.63 9.62 L 126.30 10.30 L 123.00 11.06 L 119.72 11.90 L 116.48 12.82 L 113.27 13.82 L 110.11 14.89 L 106.98 16.04 L 103.90 17.26 L 100.86 18.56 L 97.87 19.92 L 94.94 21.36 L 92.05 22.86 L 89.22 24.44 L 86.45 26.08 L 83.74 27.78 L 81.08 29.54 L 78.49 31.37 L 75.96 33.25 L 73.50 35.19 L 71.10 37.19 L 68.77 39.24 L 66.50 41.34 L 64.31 43.49 L 62.19 45.68 L 60.14 47.92 L 58.16 50.21 L 56.26 52.53 L 54.43 54.89 L 52.68 57.29 L 51.01 59.72 L 49.41 62.18 L 47.90 64.67 L 46.46 67.18 L 45.10 69.72 A 0.30 0.30 0 0 1 44.75 69.23 L 46.06 66.75 L 47.45 64.30 L 48.91 61.88 L 50.45 59.48 L 52.06 57.12 L 53.74 54.79 L 55.50 52.50 L 57.33 50.24 L 59.23 48.02 L 61.20 45.85 L 63.24 43.71 L 65.34 41.63 L 67.52 39.59 L 69.75 37.60 L 72.05 35.66 L 74.41 33.78 L 76.82 31.95 L 79.30 30.18 L 81.83 28.47 L 84.41 26.83 L 87.05 25.24 L 89.73 23.72 L 92.47 22.28 L 95.24 20.90 L 98.06 19.60 L 100.92 18.37 L 103.81 17.21 L 106.74 16.14 L 109.69 15.14 L 112.67 14.22 L 115.68 13.38 L 118.70 12.63 L 121.75 11.97 L 124.81 11.39 L 127.88 10.90 L 130.95 10.51 L 134.03 10.21 L 137.10 10.01 L 140.17 9.90 L 143.23 9.90 L 146.29 9.99 L 149.33 10.18 A 4.75 4.75 0 0 1 150.00 7.25 Z"
+              fill="url(#cometGrad1)" filter="url(#cometGlow)" />
+            <!-- Rounded illuminated head bead for Pointer 1 -->
+            <circle cx="150" cy="12" r="5" fill="#ffffff" stroke="#ff1a1a" stroke-width="2"
+              style="filter: drop-shadow(0 0 6px #ffffff) drop-shadow(0 0 10px #ff2222);" />
+
+            <!-- Pointer 2: Tapered Tail (aage se round, picche se thin - opposite side) -->
+            <path
+              d="M 150.00 292.75 L 153.42 292.56 L 156.83 292.29 L 160.24 291.94 L 163.63 291.50 L 167.01 290.98 L 170.37 290.38 L 173.70 289.70 L 177.00 288.94 L 180.28 288.10 L 183.52 287.18 L 186.73 286.18 L 189.89 285.11 L 193.02 283.96 L 196.10 282.74 L 199.14 281.44 L 202.13 280.08 L 205.06 278.64 L 207.95 277.14 L 210.78 275.56 L 213.55 273.92 L 216.26 272.22 L 218.92 270.46 L 221.51 268.63 L 224.04 266.75 L 226.50 264.81 L 228.90 262.81 L 231.23 260.76 L 233.50 258.66 L 235.69 256.51 L 237.81 254.32 L 239.86 252.08 L 241.84 249.79 L 243.74 247.47 L 245.57 245.11 L 247.32 242.71 L 248.99 240.28 L 250.59 237.82 L 252.10 235.33 L 253.54 232.82 L 254.90 230.28 A 0.30 0.30 0 0 1 255.25 230.77 L 253.94 233.25 L 252.55 235.70 L 251.09 238.12 L 249.55 240.52 L 247.94 242.88 L 246.26 245.21 L 244.50 247.50 L 242.67 249.76 L 240.77 251.98 L 238.80 254.15 L 236.76 256.29 L 234.66 258.37 L 232.48 260.41 L 230.25 262.40 L 227.95 264.34 L 225.59 266.22 L 223.18 268.05 L 220.70 269.82 L 218.17 271.53 L 215.59 273.17 L 212.95 274.76 L 210.27 276.28 L 207.53 277.72 L 204.76 279.10 L 201.94 280.40 L 199.08 281.63 L 196.19 282.79 L 193.26 283.86 L 190.31 284.86 L 187.33 285.78 L 184.32 286.62 L 181.30 287.37 L 178.25 288.03 L 175.19 288.61 L 172.12 289.10 L 169.05 289.49 L 165.97 289.79 L 162.90 289.99 L 159.83 290.10 L 156.77 290.10 L 153.71 290.01 L 150.67 289.82 A 4.75 4.75 0 0 1 150.00 292.75 Z"
+              fill="url(#cometGrad2)" filter="url(#cometGlow)" />
+            <!-- Rounded illuminated head bead for Pointer 2 -->
+            <circle cx="150" cy="288" r="5" fill="#ffffff" stroke="#ff1a1a" stroke-width="2"
+              style="filter: drop-shadow(0 0 6px #ffffff) drop-shadow(0 0 10px #ff2222);" />
+          </g>
+        </svg>
+
+        <div class="logo-wrap" aria-label="NIMS Tatkal Seva Logo">
+          <img class="official-logo" src="logo-nims-tatkal-seva-Photoroom.png" alt="NIMS Tatkal Seva">
+        </div>
+      </div>
+
+      <h1>NIMS TATKAL SEVA</h1>
+      <div class="download">
+        <a class="app-btn" href="https://play.google.com/store/apps/details?id=com.nimstatkalseva.android"
+          target="_blank" rel="noopener" aria-label="Get it on Google Play">
+          <span class="app-btn-icon">
+            <svg viewBox="0 0 512 512" width="24" height="24">
+              <path fill="#4285F4" d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1z" />
+              <path fill="#34A853"
+                d="M47 0C34 7.5 25.5 21.6 25.5 38.4v435.2c0 16.8 8.5 30.9 21.5 38.4l250.7-250.7L47 0z" />
+              <path fill="#EA4335" d="M325.3 277.7l60.1 60.1L104.6 499 325.3 277.7z" />
+              <path fill="#FBBC04"
+                d="M481.5 227.4L385.4 172.2l-60.1 62.1 60.1 60.1 96.1-55.2c14.2-8.2 14.2-23.6 0-31.8z" />
+            </svg>
+          </span>
+          <div class="app-btn-text">
+            <span class="app-btn-sub">GET IT ON</span>
+            <span class="app-btn-title">Google Play</span>
+          </div>
+        </a>
+
+        <a class="app-btn" href="https://apps.apple.com/" target="_blank" rel="noopener"
+          aria-label="Download on the App Store">
+          <span class="app-btn-icon">
+            <svg viewBox="0 0 170 170" width="22" height="22" fill="#ffffff">
+              <path
+                d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.69-3.04-7.69-7.85-12-14.42-6-9.16-10.74-19.82-14.22-31.99-3.48-12.17-5.22-23.83-5.22-34.99 0-16.14 4.24-29.68 12.73-40.63 8.49-10.94 19.01-16.52 31.55-16.73 4.9 0 10.21 1.25 15.93 3.76 5.72 2.51 9.5 3.87 11.35 4.09 1.42-.22 5.42-1.63 12.01-4.24 6.59-2.61 12.07-3.75 16.44-3.43 14.15.87 25.35 6.42 33.6 16.65-12.63 7.63-18.84 18.07-18.63 31.34.22 10.45 4.13 19.16 11.75 26.12 7.62 6.97 16.43 10.88 26.44 11.75-2.29 6.75-5.01 13.59-8.18 20.53zM119.22 33.04c0-7.63 2.73-14.8 8.18-21.54 5.45-6.75 12.18-10.99 20.2-12.73.44 1.31.65 2.61.65 3.92 0 7.63-2.84 15.14-8.51 22.53-5.66 7.39-12.52 11.64-20.57 12.74-.22-1.52-.33-3.15-.33-4.92z" />
+            </svg>
+          </span>
+          <div class="app-btn-text">
+            <span class="app-btn-sub">Download on the</span>
+            <span class="app-btn-title">App Store</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- 2nd: Real Live Running Heart Rate (ECG) Canvas - Flowing Left to Right, Unbroken Continuous Wave -->
+    <div class="ecg-container-wrap" aria-label="Real Live Heart Rate Monitor">
+      <div class="ecg-canvas-wrapper">
+        <canvas id="ecgCanvas"></canvas>
+      </div>
+      <div class="ecg-bottom-line"></div>
+    </div>
+
+    <section class="section">
+      <div class="section-title">Book Healthcare Services</div>
+      <div class="booking-line-wrap">
+        <div class="booking-line">
+          <span>इन सभी सेवाओं को बुक करने के लिए</span>
+          <a href="https://nimshospitals.net/" target="_blank" rel="noopener">nimshospitals.net</a>
+          <span>पर जाएँ</span>
+        </div>
+      </div>
+
+      <div class="services">
+        <a class="service" href="https://nimshospitals.net/icu-bed-booking" target="_blank">
+          <span class="service-icon">🛏️</span>
+          <span class="service-name">ICU Bed Bookings</span>
+        </a>
+        <a class="service" href="https://nimshospitals.net/online-appointment" target="_blank">
+          <span class="service-icon">📅</span>
+          <span class="service-name">Online Appointments Booking</span>
+        </a>
+        <a class="service" href="https://nimshospitals.net/ambulance" target="_blank">
+          <span class="service-icon">🚑</span>
+          <span class="service-name">Ambulance Booking</span>
+        </a>
+        <a class="service" href="https://nimshospitals.net/health-checkup" target="_blank">
+          <span class="service-icon">🧪💊</span>
+          <span class="service-name">Book Health Checkup & Home Sample Collection</span>
+        </a>
+      </div>
+
+      <!-- NIMS Hospital Affiliation Section -->
+      <div class="hospital-affiliation">
+        <div class="affiliation-badge">
+          <span class="affiliation-badge-dot"></span>
+          <span>AN INITIATIVE BY</span>
+        </div>
+        <a href="https://nimshospitals.net/" target="_blank" rel="noopener" class="hospital-logo-card"
+          title="Visit NIMS Hospital Official Website">
+          <img src="nims_hospital_logo.png" alt="NIMS Hospital" class="hospital-badge-img">
+        </a>
+        <!-- <div class="affiliation-tagline">
+          <span>A Unit of NIMS Hospital</span>
+        </div> -->
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="info">
+        <h3>ICU Bed Booking</h3>
+        <p>Check and request ICU bed availability quickly for urgent and critical care requirements.</p>
+      </div>
+      <div class="info">
+        <h3>OPD & Appointments</h3>
+        <p>Book OPD visits and online appointments with a simple, convenient healthcare journey.</p>
+      </div>
+      <div class="info">
+        <h3>Ambulance Service</h3>
+        <p>Request ambulance assistance when you need timely transportation and emergency support.</p>
+      </div>
+      <div class="info">
+        <h3>Health Checkups</h3>
+        <p>Explore health checkup packages and arrange sample collection from home or visit the hospital.</p>
+      </div>
+    </section>
+
+    <section class="emergency">
+      <h2>🚨 Emergency Contact</h2>
+      <div class="numbers">
+        <a class="number" href="tel:+917412048766"><small>Emergency</small>+91 74120 48766</a>
+        <a class="number" href="tel:141-2388999"><small>Ambulance</small>0141-23 88 999</a>
+      </div>
+    </section>
+
+    <div class="footer">
+      <b>24×7 Care, Just a Tap Away</b><br>
+      © 2026 NIMS Tatkal Seva. All Rights Reserved. Unit Of NIMS Hospital, Jaipur
+    </div>
+  </main>
+
+  <!-- Real Live ECG Running Heart Rate Script (Canvas 60fps Vector Math) -->
+  <script>
+    (function () {
+      const canvas = document.getElementById('ecgCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      let width = 0;
+      let height = 0;
+      let dpr = 1;
+
+      function resize() {
+        const rect = canvas.getBoundingClientRect();
+        dpr = window.devicePixelRatio || 1;
+        width = Math.max(rect.width, 300);
+        height = rect.height || 58;
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      window.addEventListener('resize', resize);
+      resize();
+
+      // Continuous medical ECG cardiac curve generator
+      // Returns normalized vertical displacement: 0=baseline, -1.0=tall R spike, +0.48=deep S plunge
+      function getEcgY(phase) {
+        const p = ((phase % 1.0) + 1.0) % 1.0;
+        if (p >= 0.18 && p < 0.26) {
+          // P Wave (atrial depolarization)
+          const t = (p - 0.18) / 0.08;
+          return -Math.sin(t * Math.PI) * 0.16;
+        } else if (p >= 0.33 && p < 0.36) {
+          // Q Dip
+          const t = (p - 0.33) / 0.03;
+          return Math.sin(t * Math.PI) * 0.14;
+        } else if (p >= 0.36 && p < 0.415) {
+          // R Peak (tall ventricular contraction spike)
+          const t = (p - 0.36) / 0.055;
+          const peak = 1.0 - Math.abs(2.0 * t - 1.0);
+          return -Math.pow(peak, 1.25) * 1.0;
+        } else if (p >= 0.415 && p < 0.465) {
+          // S Plunge (ventricular depolarization)
+          const t = (p - 0.415) / 0.05;
+          const plunge = 1.0 - Math.abs(2.0 * t - 1.0);
+          return Math.pow(plunge, 1.25) * 0.48;
+        } else if (p >= 0.52 && p < 0.65) {
+          // T Wave (ventricular repolarization recovery)
+          const t = (p - 0.52) / 0.13;
+          return -Math.sin(t * Math.PI) * 0.24;
+        }
+        return 0; // Continuous unbroken baseline
+      }
+
+      let offset = 0;
+      const speed = 1.35; // Continuous smooth flow speed towards right
+      const wavelength = 340; // Beat-to-beat spacing in pixels
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+
+        const midY = height * 0.52;
+        const amplitude = height * 0.42;
+
+        // Gradient: Starts blurred & transparent on Left, 100% visible bright red in Center, fades out on Right
+        const grad = ctx.createLinearGradient(0, 0, width, 0);
+        grad.addColorStop(0.0, 'rgba(255, 26, 26, 0)');
+        grad.addColorStop(0.08, 'rgba(255, 26, 26, 0.25)');
+        grad.addColorStop(0.20, 'rgba(255, 26, 26, 0.88)');
+        grad.addColorStop(0.35, '#ff1a1a');
+        grad.addColorStop(0.65, '#ff1a1a');
+        grad.addColorStop(0.80, 'rgba(255, 26, 26, 0.88)');
+        grad.addColorStop(0.92, 'rgba(255, 26, 26, 0.25)');
+        grad.addColorStop(1.0, 'rgba(255, 26, 26, 0)');
+
+        ctx.save();
+        // Vibrant neon glow filter
+        ctx.shadowColor = 'rgba(255, 26, 26, 0.9)';
+        ctx.shadowBlur = 9;
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 2.8;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        // Continuous unbroken line calculation across the entire canvas width
+        ctx.beginPath();
+        const step = 1.5;
+        for (let x = 0; x <= width; x += step) {
+          // (x - offset) moves cardiac waves continuously from LEFT to RIGHT!
+          const phase = (x - offset) / wavelength;
+          const y = midY + getEcgY(phase) * amplitude;
+          if (x === 0) {
+            ctx.moveTo(x, y);
+          } else {
+            ctx.lineTo(x, y);
+          }
+        }
+        ctx.stroke();
+
+        // Inner glowing electric core line
+        ctx.shadowBlur = 3;
+        ctx.shadowColor = '#ffffff';
+        ctx.strokeStyle = 'rgba(255, 240, 240, 0.65)';
+        ctx.lineWidth = 1.1;
+        ctx.stroke();
+
+        ctx.restore();
+
+        offset += speed;
+        requestAnimationFrame(animate);
+      }
+
+      requestAnimationFrame(animate);
+    })();
+  </script>
+</body>
+
+</html>
